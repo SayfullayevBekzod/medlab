@@ -25,7 +25,8 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     {% if request.user.is_authenticated %}
-                        <li><a class="nav-link scrollto" href="{% url 'med:patient' %}">Patient</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Patient</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Create Patient</a></li>
                     {% else %}
                         <li><a class="nav-link scrollto active" href="{% url 'med:home' %}">Home</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'med:about' %}">About</a></li>
@@ -53,15 +54,15 @@
             <th scope="col">Disease_id</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            {% for p in patient %}
-                <th scope="row">1</th>
-                <td>Mark</td>
+        {% for p in patient %}
+            <tbody>
+            <tr>
+                <th scope="row">{{ p.count }}</th>
+                <td>{{ p.fullname }}</td>
                 <td>Otto</td>
                 <td>@mdo</td>
-            {% endfor %}
-        </tr>
-        </tbody>
+            </tr>
+            </tbody>
+        {% endfor %}
     </table>
 {% endblock %}
