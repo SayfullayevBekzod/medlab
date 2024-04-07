@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+        <div class="container d-flex justify-content-between">
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-envelope"></i> <a href="mailto:sayfullayevbekzod1234@gmail.com">sayfullayevbekzod1234@gmail.com</a>
+                <i class="bi bi-phone"></i><a href="tel:+998(93)594-01-35">+998(93)594-01-35</a>
+            </div>
+            <div class="d-none d-lg-flex social-links align-items-center">
+                <a href="https://www.instagram.com/_sayful1ayev_/" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/bekzod-sayfullayev-4348512a3/" class="linkedin"><i
+                        class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+
+            <h1 class="logo me-auto"><a href="{% url 'med:home' %}" class="logo me-auto"><img
+                    src="{% static 'assets/img/favicon1.png' %}" alt="" class="img-fluid"> Medilab</a></h1>
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    {% if request.user.is_authenticated %}
+                        <li><a class="nav-link scrollto" href="{% url 'med:patient' %}">Patient</a></li>
+                    {% else %}
+                        <li><a class="nav-link scrollto active" href="{% url 'med:home' %}">Home</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:about' %}">About</a></li>
+                        <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                        <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:doctor' %}">Doctors</a></li>
+                        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                        <li><a href="#appointment" class="nav-link scrollto"><span
+                                class="d-none d-md-inline">Make an Appointment</span>
+                        </a></li>
+                    {% endif %}
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <br><br><br><br><br><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fullname</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Disease_id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for p in patient %}
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
