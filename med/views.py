@@ -25,6 +25,7 @@ class DoctorView(ListView):
 
 
 class PatientView(ListView):
+    paginate_by = 2
     model = Patient
     template_name = "med/patient.html"
     context_object_name = "bemor"

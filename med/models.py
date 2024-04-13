@@ -9,11 +9,12 @@ from django.db.models import (
     ForeignKey,
     CASCADE,
 )
+from django.forms import DateTimeField
 
 
 class Gender(TextChoices):
-    MALE = "M", "male"
-    FEMALE = "F", "female"
+    MALE = "Male", "male"
+    FEMALE = "Female", "female"
 
 
 class Count(Model):
@@ -28,7 +29,6 @@ class Count(Model):
 
 class Disease(Model):
     title = CharField(max_length=128)
-    description = TextField()
 
     def __str__(self):
         return self.title

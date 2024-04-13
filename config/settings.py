@@ -64,13 +64,9 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": 'medlab',
-        "HOST": 'localhost',
-        "PASSWORD": '0000',
-        "USER": 'postgres',
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -108,6 +104,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+handler404 = "med.handlers.handler_404"
 STATIC_ROOT = os.path.join(BASE_DIR, 'med/static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
