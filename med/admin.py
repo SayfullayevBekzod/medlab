@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from med.models import Count, Patient, Disease, Doctor, Icon
+from med.models import Count, Patient, Disease, Doctor, Icon, PatientDoctor
 
 
 @admin.register(Count)
@@ -26,3 +26,8 @@ class DoctorAdmin(admin.ModelAdmin):
 @admin.register(Icon)
 class IconAdmin(admin.ModelAdmin):
     list_display = ("name",)
+
+
+@admin.register(PatientDoctor)
+class PatientDoctorAdmin(admin.ModelAdmin):
+    list_display = ('name',)

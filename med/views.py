@@ -4,8 +4,8 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView
 
-from med.forms import PatientCreateForm
-from med.models import Count, Doctor, Patient
+from med.forms import PatientCreateForm, PatientForm
+from med.models import Count, Doctor, Patient, PatientDoctor
 
 
 class HomeView(TemplateView):
@@ -25,7 +25,7 @@ class DoctorView(ListView):
 
 
 class PatientView(ListView):
-    paginate_by = 2
+    paginate_by = 20
     model = Patient
     template_name = "med/patient.html"
     context_object_name = "bemor"
@@ -50,3 +50,19 @@ def patient_create(request):
     else:
         form = PatientCreateForm()
         return render(request, "med/patient_form.html", {"form": form})
+
+
+def doctor_view(request):
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = PatientForm()
+    return render(request, 'med/appoint.html', {'form': form})
+
+
+class Acceptance(ListView):
+    model = PatientDoctor
+    template_name = "med/acceptance.html"
+    context_object_name = "acceptance"

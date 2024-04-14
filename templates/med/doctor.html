@@ -50,20 +50,18 @@
                     Quia
                     fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
-
             <div class="row">
-
                 {% for d in doctor %}
                     <div class="col-lg-6 mt-4 mt-lg-0">
                         <div class="member d-flex align-items-start">
-                            <div class="pic"><img src="{{ d.foto.url }}" class="img-fluid" alt=""></div>
+                            <div class="pic"><img src="{{ d.foto.url.path }}" class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>{{ d.fullname }}</h4>
                                 <span>{{ d.job }}</span>
                                 <p>{{ d.body }}</p>
-                                <div class="social">
-                                    <a href="{{ d.link }}"><i class="ri-telegram-fill"></i></a>
-                                </div>
+{#                                <div class="social">#}
+{#                                    <a href="{{ d.link }}"><i class="bi bi-{{ d.icon }}"></i></a>#}
+{#                                </div>#}
                             </div>
                         </div>
                     </div>

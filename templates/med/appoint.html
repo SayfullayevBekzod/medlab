@@ -16,14 +16,16 @@
     </div>
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
+
+
             <h1 class="logo me-auto"><a href="{% url 'med:home' %}" class="logo me-auto"><img
                     src="{% static 'assets/img/favicon1.png' %}" alt="" class="img-fluid"> Medilab</a></h1>
+
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     {% if request.user.is_authenticated %}
-                        <li><a class="nav-link scrollto" href="{% url 'med:acceptance' %}">Qabul</a></li>
-                        <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Bemor</a></li>
-                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Bemor Qo'shish</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Patient</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Create Patient</a></li>
                     {% else %}
                         <li><a class="nav-link scrollto active" href="{% url 'med:home' %}">Home</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'med:about' %}">About</a></li>
@@ -37,40 +39,41 @@
                     {% endif %}
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
+            </nav><!-- .navbar -->
+
+
         </div>
     </header>
+    <br><br><br><br>
+    {% load crispy_forms_tags %}
     <section id="hero" class="d-flex align-items-center">
         <div class="container">
-            <h1>Salom Doctor</h1>
-            <h2>Bu yerda siz bemor qo'shsangiz bo'ladi.</h2>
-            <button type="button" class="btn-get-started scrollto" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    data-bs-whatever="@mdo">Bemor qo'shish
-            </button>
+            <h1>Hush kelibsiz!</h1>
+            <h2>Qabulga yozilishni hohlaysizmi?</h2>
+                <button type="button" class="btn-get-started scrollto" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-whatever="@mdo">Qabulga yozilish
+                </button>
         </div>
     </section>
-    <br><br><br><br><br><br><br><br>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New client</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Qabulga yozilish</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
                 </div>
                 <div class="modal-body">
-                    <div class="content-section">
-                        <form method="post" action="{% url 'med:create-patient' %}">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <div class="form-group">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Joylash</button>
-                            </div>
-                        </form>
-                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
@@ -147,10 +150,8 @@
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
-    </footer><!-- End Footer -->
-
+    </footer>
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
-
 {% endblock %}

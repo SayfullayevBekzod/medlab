@@ -15,20 +15,16 @@
             </div>
         </div>
     </div>
-
-    <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-
-
             <h1 class="logo me-auto"><a href="{% url 'med:home' %}" class="logo me-auto"><img
                     src="{% static 'assets/img/favicon1.png' %}" alt="" class="img-fluid"> Medilab</a></h1>
-
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     {% if request.user.is_authenticated %}
-                        <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Patient</a></li>
-                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Create Patient</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:acceptance' %}">Qabul</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Bemor</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Bemor Qo'shish</a></li>
                     {% else %}
                         <li><a class="nav-link scrollto active" href="{% url 'med:home' %}">Home</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'med:about' %}">About</a></li>
@@ -36,17 +32,15 @@
                         <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'med:doctor' %}">Doctors</a></li>
                         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                        <li><a href="#appointment" class="nav-link scrollto"><span
+                        <li><a href="{% url 'med:appoint' %}" class="nav-link scrollto"><span
                                 class="d-none d-md-inline">Make an Appointment</span>
                         </a></li>
                     {% endif %}
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-
+            </nav>
         </div>
-    </header><!-- End Header -->
+    </header>
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">

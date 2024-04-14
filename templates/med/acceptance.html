@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-<header id="header" class="fixed-top">
+    <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
             <h1 class="logo me-auto"><a href="{% url 'med:home' %}" class="logo me-auto"><img
                     src="{% static 'assets/img/favicon1.png' %}" alt="" class="img-fluid"> Medilab</a></h1>
@@ -47,44 +47,22 @@
             <th scope="col">#</th>
             <th scope="col">Fullname</th>
             <th scope="col">Age</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Disease</th>
+            <th scope="col">Sickness</th>
+            <th scope="col">Doctor</th>
+            <th scope="col">Date</th>
         </tr>
         </thead>
-        {% for p in bemor %}
+        {% for a in acceptance %}
             <tbody>
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ p.fullname }}</td>
-                <td>{{ p.age }}</td>
-                <td>{{ p.gender }}</td>
-                <td>{{ p.disease_id }}</td>
+                <td>{{ a.name }}</td>
+                <td>{{ a.age }}</td>
+                <td>{{ a.sickness }}</td>
+                <td>{{ a.doctor.fullname }}</td>
+                <td>{{ a.appointment_date }}</td>
             </tr>
             </tbody>
         {% endfor %}
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                {% if  page_obj.has_previous %}
-                    <a class="page-link" href="{% url 'med:bemor' %}?page={{ page_obj.previous_page_number }}"
-                       aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                {% endif %}
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                {% if  page_obj.has_next %}
-                    <a class="page-link" href="{% url 'med:bemor' %}?page={{ page_obj.next_page_number }}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                {% endif %}
-            </li>
-        </ul>
-    </nav>
 {% endblock %}
