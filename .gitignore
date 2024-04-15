@@ -3,4 +3,5 @@
 .env/
 db.sqlite3
 .env
-staticfiles/
+.staticfiles/
+staticfiles
