@@ -1,19 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-    <div id="topbar" class="d-flex align-items-center fixed-top">
-        <div class="container d-flex justify-content-between">
-            <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope"></i> <a href="mailto:sayfullayevbekzod1234@gmail.com">sayfullayevbekzod1234@gmail.com</a>
-                <i class="bi bi-phone"></i><a href="tel:+998(93)594-01-35">+998(93)594-01-35</a>
-            </div>
-            <div class="d-none d-lg-flex social-links align-items-center">
-                <a href="https://www.instagram.com/_sayful1ayev_/" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/bekzod-sayfullayev-4348512a3/" class="linkedin"><i
-                        class="bi bi-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
+    {% include 'topbar.html' %}
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
             <h1 class="logo me-auto"><a href="{% url 'med:home' %}" class="logo me-auto"><img
@@ -23,9 +11,10 @@
                     {% if request.user.is_authenticated %}
                         <li><a class="nav-link scrollto" href="{% url 'med:acceptance' %}">Qabul</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Bemor</a></li>
-                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Bemor Qo'shish</a></li>
+                        <li><a class="nav-link scrollto active" href="{% url 'med:create-patient' %}">Bemor Qo'shish</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:logout' %}">Logout</a></li>
                     {% else %}
-                        <li><a class="nav-link scrollto active" href="{% url 'med:home' %}">Home</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:home' %}">Home</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'med:about' %}">About</a></li>
                         <li><a class="nav-link scrollto" href="#services">Services</a></li>
                         <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
@@ -34,6 +23,7 @@
                         <li><a href="{% url 'med:appoint' %}" class="nav-link scrollto"><span
                                 class="d-none d-md-inline">Make an Appointment</span>
                         </a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:login' %}">Login</a></li>
                     {% endif %}
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

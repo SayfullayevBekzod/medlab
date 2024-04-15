@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Form, CharField, PasswordInput
 from django import forms
 from med.models import Patient, PatientDoctor
 
@@ -25,11 +25,15 @@ class PatientForm(ModelForm):
         for field in self.fields:
             if str(field) != "is_active":
                 self.fields[field].widget.attrs.update(
-                    {"class": "form-control", "placeholder": f"Enter the {str(field)}"})
+                    {"class": "form-control", "placeholder": f"Enter the {str(field)}"}
+                )
 
     class Meta:
         model = PatientDoctor
-        fields = ("name", "age", "sickness", 'doctor', 'appointment_date')
-        widgets = {
-            'appointment_date': forms.DateInput(attrs={'type': 'date'})
-        }
+        fields = ("name", "age", "sickness", "doctor", "appointment_date")
+        widgets = {"appointment_date": forms.DateInput(attrs={"type": "date"})}
+
+
+class UserLoginForm(Form):
+    username = CharField(max_length=128)
+    password = CharField(max_length=128, widget=PasswordInput)

@@ -1,39 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
-    <div id="topbar" class="d-flex align-items-center fixed-top">
-        <div class="container d-flex justify-content-between">
-            <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-                <i class="bi bi-phone"></i> +1 5589 55488 55
-            </div>
-            <div class="d-none d-lg-flex social-links align-items-center">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
+    {% include 'topbar.html' %}
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-
-            <h1 class="logo me-auto"><a href="{% url 'med:home' %}">Medilab</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
+            <h1 class="logo me-auto"><a href="{% url 'med:home' %}" class="logo me-auto"><img
+                    src="{% static 'assets/img/favicon1.png' %}" alt="" class="img-fluid"> Medilab</a></h1>
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto" href="{% url 'med:home' %}">Home</a></li>
-                    <li><a class="nav-link scrollto active" href="{% url 'med:about' %}">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
-                    <li><a class="nav-link scrollto" href="{% url 'med:doctor' %}">Doctors</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a class="nav-link scrollto" href="{% url 'med:acceptance' %}">Qabul</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:bemor' %}">Bemor</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:create-patient' %}">Bemor Qo'shish</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a class="nav-link scrollto" href="{% url 'med:home' %}">Home</a></li>
+                        <li><a class="nav-link scrollto active" href="{% url 'med:about' %}">About</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:services' %}">Services</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:department' %}">Departments</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:doctor' %}">Doctors</a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:contact' %}">Contact</a></li>
+                        <li><a href="{% url 'med:appoint' %}" class="nav-link scrollto"><span
+                                class="d-none d-md-inline">Make an Appointment</span>
+                        </a></li>
+                        <li><a class="nav-link scrollto" href="{% url 'med:login' %}">Login</a></li>
+                    {% endif %}
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
         </div>
-    </header><!-- End Header -->
+    </header>
     <br>
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -75,6 +71,6 @@
             </div>
 
         </div>
-    </section><!-- End About Section -->
-    {% include 'med/count.html' %}
+    </section>
+    {% include 'med/footer.html' %}
 {% endblock %}

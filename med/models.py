@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db.models import (
     Model,
     IntegerField,
@@ -7,9 +8,13 @@ from django.db.models import (
     ManyToManyField,
     ImageField,
     ForeignKey,
-    CASCADE, DateField,
+    CASCADE,
+    DateField,
 )
-from django.forms import DateTimeField
+
+
+# class User(AbstractUser):
+#     pass
 
 
 class Gender(TextChoices):
@@ -73,3 +78,13 @@ class PatientDoctor(Model):
 
     def __str__(self):
         return self.name
+
+
+class Department(Model):
+    title = CharField(max_length=128)
+    description = TextField()
+    body = TextField()
+    image = ImageField(upload_to="media/", default="media/default.jpg")
+
+    def __str__(self):
+        return self.title
